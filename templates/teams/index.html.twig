@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TeamsController!
+{% endblock %}
+
+{% block body %}
+
+	{# <ul>
+	    {% for team in pagination %}
+	        <li>
+	            <h3>{{team.name}}</h3>
+	            <ul>
+	                {% for player in team.getPlayers() %}
+	                    <li>{{player.name}}</li>
+	                {% endfor %}
+	                
+	            </ul>
+	        </li>
+	    {% endfor %}
+	</ul> #}
+	<section class="teams">
+		<div class="teams__title">
+			<h1>Teams ({{ pagination.getTotalItemCount }})</h1>
+		</div>
+		<div class="teams__gridcontent">
+			<ul class="cards">
+				{% for team in pagination %}
+                    {%  include 'teams/team.html.twig' with {team} %}
+                {% endfor %}
+			</ul>
+		</div>
+	</section>
+
+	<div class="navigation">
+		{{ knp_pagination_render(pagination) }}
+	</div>
+
+{% endblock %}

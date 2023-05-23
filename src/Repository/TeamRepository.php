@@ -39,6 +39,15 @@ class TeamRepository extends ServiceEntityRepository
         }
     }
 
+    public function listPaginated($page, $perPage)
+    {
+        $queryBuilder = $this->createQueryBuilder('t')
+            ->setFirstResult(($page - 1) * $perPage)
+            ->setMaxResults($perPage);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Team[] Returns an array of Team objects
 //     */
