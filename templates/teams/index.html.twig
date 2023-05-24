@@ -1,23 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TeamsController!
+{% block title %}Teams list
 {% endblock %}
 
 {% block body %}
 
-	{# <ul>
-	    {% for team in pagination %}
-	        <li>
-	            <h3>{{team.name}}</h3>
-	            <ul>
-	                {% for player in team.getPlayers() %}
-	                    <li>{{player.name}}</li>
-	                {% endfor %}
-	                
-	            </ul>
-	        </li>
-	    {% endfor %}
-	</ul> #}
 	<section class="teams">
 		<div class="teams__title">
 			<h1>Teams ({{ pagination.getTotalItemCount }})</h1>

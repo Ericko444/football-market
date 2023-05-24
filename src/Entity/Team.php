@@ -25,7 +25,7 @@ class Team
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
     private ?string $moneyBalance = null;
 
-    #[ORM\OneToMany(mappedBy: 'team', targetEntity: Player::class)]
+    #[ORM\OneToMany(mappedBy: 'team', targetEntity: Player::class, cascade: ['persist'])]
     private Collection $players;
 
     public function __construct()
