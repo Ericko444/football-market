@@ -5,22 +5,25 @@
 
 {% block body %}
 
-	<section class="teams">
-		<div class="teams__title">
-			<h1>Teams ({{ pagination.getTotalItemCount }})</h1>
-		</div>
-		<a href="/team/create">Create teams</a>
-		<div class="teams__gridcontent">
-			<ul class="cards">
-				{% for team in pagination %}
-                    {%  include 'teams/team.html.twig' with {team} %}
+    <section class="teams">
+        <div class="teams__title">
+            <h1>Teams ({{ pagination.getTotalItemCount }})</h1>
+        </div>
+        <div class="teams__links">
+            <a href="/team/create" class="create__button">Create teams</a>
+            <a href="/team/transfer" class="transfer__button">Transfer players</a>
+        </div>
+        <div class="teams__gridcontent">
+            <ul class="cards">
+                {% for team in pagination %}
+                    {% include 'teams/team.html.twig' with {team} %}
                 {% endfor %}
-			</ul>
-		</div>
-	</section>
+            </ul>
+        </div>
+    </section>
 
-	<div class="navigation">
-		{{ knp_pagination_render(pagination) }}
-	</div>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 
 {% endblock %}

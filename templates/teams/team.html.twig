@@ -1,22 +1,19 @@
 <li class="cards__item">
-	<div class="card">
-		<div class="card__content">
-			<h2 class="card__content__title">
-				{{ team.name }}
-			</h2>
-			<p class="card__content__text">
-				Players
-			</p>
-			<div class="card__content__players">
-				<ul>
+    <div class="card">
+        <div class="card__content">
+            <h2 class="card__content__title">
+                {{ team.name }}
+            </h2>
+            <p class="card__content__text">
+                Players
+            </p>
+            <div class="card__content__players">
+                <ul>
                     {% for player in team.getPlayers() %}
-					    <li>{{ player.name }}</li>
+                        <li>{{ player.name }}</li>
                     {% endfor %}
-				</ul>
-			</div>
-			<p class="card__content__link">
-				<a href="#">Details</a>
-			</p>
-		</div>
-	</div>
+                </ul>
+            </div>
+        </div>
+    </div>
 </li>

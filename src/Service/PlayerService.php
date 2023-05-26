@@ -15,7 +15,6 @@ class PlayerService
         private PlayerRepository $playerRepository,
         private EntityManagerInterface $em
     ) {
-
     }
 
     public function getPlayer($id)

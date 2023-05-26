@@ -43,7 +43,9 @@ body .content__wrapper {
   margin: 0px;
 }
 body .content__wrapper__main .navbar {
+  background-color: #0d479e;
   padding: 20px 30px;
+  color: #ffffff;
 }
 body .content__wrapper__main .navbar__container {
   display: flex;
@@ -54,6 +56,14 @@ body .content__wrapper__main .navbar__container button {
   background-color: transparent;
   border: none;
 }
+body .content__wrapper__main main {
+  position: relative;
+}
+@media (min-width: 769px) {
+  body .content__wrapper__main main {
+    min-height: 768px;
+  }
+}
 body .content__wrapper__main main .teams {
   padding: 30px;
 }
@@ -62,6 +72,23 @@ body .content__wrapper__main main .teams__title {
 }
 body .content__wrapper__main main .teams__title h1 {
   font-size: 2em;
+}
+body .content__wrapper__main main .teams__links {
+  position: relative;
+  left: 10px;
+  top: 20px;
+  display: flex;
+}
+body .content__wrapper__main main .teams__links .create__button {
+  padding: 10px 20px;
+  background-color: #0d479e;
+  color: #ffffff;
+  margin-right: 10px;
+}
+body .content__wrapper__main main .teams__links .transfer__button {
+  padding: 10px 20px;
+  background-color: #262626;
+  color: #ffffff;
 }
 body .content__wrapper__main main .teams__gridcontent .cards {
   display: flex;
@@ -83,6 +110,11 @@ body .content__wrapper__main main .teams__gridcontent .cards__item .card {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+@media (min-width: 769px) {
+  body .content__wrapper__main main .teams__gridcontent .cards__item .card {
+    min-width: 256px;
+  }
 }
 body .content__wrapper__main main .teams__gridcontent .cards__item .card__content {
   padding: 0.5rem;
@@ -120,10 +152,12 @@ body .content__wrapper__main main .teams__gridcontent .cards__item .card__conten
   margin-bottom: 10px;
 }
 body .content__wrapper__main main .create {
+  padding: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 100%;
 }
 body .content__wrapper__main main .create .title {
   text-align: center;
@@ -136,28 +170,33 @@ body .content__wrapper__main main .create .form {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 1000px;
+  width: 100%;
 }
 body .content__wrapper__main main .create .form__content {
   width: 100%;
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #ffffff;
 }
 body .content__wrapper__main main .create .form__content label {
   display: none;
 }
-body .content__wrapper__main main .create .form__content .inputs {
+body .content__wrapper__main main .create .form__content form {
+  width: 80%;
+}
+body .content__wrapper__main main .create .form__content form .inputs {
   display: flex;
   flex-direction: column;
 }
 @media (min-width: 769px) {
-  body .content__wrapper__main main .create .form__content .inputs {
+  body .content__wrapper__main main .create .form__content form .inputs {
     flex-direction: row;
   }
 }
-body .content__wrapper__main main .create .form__content .inputs .input {
+body .content__wrapper__main main .create .form__content form .inputs .input {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -171,55 +210,50 @@ body .content__wrapper__main main .create .form__content .inputs .input {
   color: #000000;
 }
 @media (min-width: 769px) {
-  body .content__wrapper__main main .create .form__content .inputs .input.name {
+  body .content__wrapper__main main .create .form__content form .inputs .input.name {
     margin-right: 70px;
   }
 }
-body .content__wrapper__main main .create .form__content .inputs .input.hidden {
+body .content__wrapper__main main .create .form__content form .inputs .input.hidden {
   visibility: hidden;
 }
-body .content__wrapper__main main .create .form__content .inputs .input:focus {
+body .content__wrapper__main main .create .form__content form .inputs .input:focus {
   outline: none;
   border-bottom: 1px solid #000000;
 }
-body .content__wrapper__main main .create .form__content .inputs .input::placeholder {
+body .content__wrapper__main main .create .form__content form .inputs .input::placeholder {
   color: #000000;
 }
 @media (min-width: 769px) {
-  body .content__wrapper__main main .create .form__content .inputs .input {
+  body .content__wrapper__main main .create .form__content form .inputs .input {
     font-size: 16px;
   }
 }
-body .content__wrapper__main main .create .form__content .inputs .input p {
+body .content__wrapper__main main .create .form__content form .inputs .input p {
   margin-top: 10px;
 }
-body .content__wrapper__main main .create .form__content .inputs .players {
+body .content__wrapper__main main .create .form__content form .inputs .players {
   list-style-type: none;
-}
-body .content__wrapper__main main .create .form__content .inputs .players li {
-  position: relative;
-}
-body .content__wrapper__main main .create .form__content .inputs .players li button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-}
-body .content__wrapper__main main .create .form__content .inputs .players li div {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-body .content__wrapper__main main .create .form__content .inputs .players li div div:nth-child(1) {
-  margin-right: 70px;
-}
-body .content__wrapper__main main .create .form__content .inputs .players li div div:nth-child(3) {
-  display: block;
   width: 100%;
 }
+body .content__wrapper__main main .create .form__content form .inputs .players li {
+  max-width: 47%;
+  position: relative;
+}
+body .content__wrapper__main main .create .form__content form .inputs .players li button {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #cc0000;
+}
 body .content__wrapper__main main .create .form__content .add_item_link {
-  background-color: #ffffff;
-  color: #000;
+  background-color: #262626;
+  color: #ffffff;
+  cursor: pointer;
   max-width: 100px;
   padding: 7px 5px;
   text-align: center;
@@ -235,8 +269,9 @@ body .content__wrapper__main main .create .form__content .add_item_link {
   }
 }
 body .content__wrapper__main main .create .form__content .create__button {
-  background-color: #ffffff;
-  color: #000;
+  background-color: #0d479e;
+  color: #ffffff;
+  cursor: pointer;
   max-width: 100px;
   padding: 7px 5px;
   text-align: center;
@@ -253,6 +288,7 @@ body .content__wrapper__main main .create .form__content .create__button {
   }
 }
 body .content__wrapper__main main .transfer {
+  padding: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -264,6 +300,9 @@ body .content__wrapper__main main .transfer .title {
 }
 body .content__wrapper__main main .transfer .title h1 {
   font-size: 2em;
+}
+body .content__wrapper__main main .transfer .form {
+  width: 100%;
 }
 body .content__wrapper__main main .transfer .form .text {
   text-align: center;
@@ -278,6 +317,13 @@ body .content__wrapper__main main .transfer .form .amount {
 }
 body .content__wrapper__main main .transfer .form .amount input {
   text-align: center;
+  padding: 10px 20px;
+  font-size: 2em;
+}
+body .content__wrapper__main main .transfer .form .error {
+  text-align: center;
+  padding-bottom: 20px;
+  color: #cc0000;
 }
 body .content__wrapper__main main .transfer .form .submit {
   display: flex;
@@ -286,15 +332,20 @@ body .content__wrapper__main main .transfer .form .submit {
   text-align: center;
   margin: 20px 0;
 }
-body .content__wrapper__main main .transfer .form .selects {
-  display: flex;
-  justify-content: space-between;
+body .content__wrapper__main main .transfer .form .submit button {
+  padding: 10px 20px;
+  background-color: #0d479e;
+  color: #ffffff;
 }
-body .content__wrapper__main main .transfer .form .selects .selectform {
+body .content__wrapper__main main .transfer .form form .selects {
+  display: flex;
+  justify-content: center;
+}
+body .content__wrapper__main main .transfer .form form .selects .selectform {
   margin-left: 20px;
   margin-right: 20px;
 }
-body .content__wrapper__main main .transfer .form .selects .selectform select {
+body .content__wrapper__main main .transfer .form form .selects .selectform select {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -310,10 +361,10 @@ body .content__wrapper__main main .transfer .form .selects .selectform select {
   cursor: pointer;
   font-size: 1em;
 }
-body .content__wrapper__main main .transfer .form .selects .selectform select::-ms-expand {
+body .content__wrapper__main main .transfer .form form .selects .selectform select::-ms-expand {
   display: none;
 }
-body .content__wrapper__main main .transfer .form .selects .selectform .select {
+body .content__wrapper__main main .transfer .form form .selects .selectform .select {
   position: relative;
   display: flex;
   width: 20em;
@@ -323,7 +374,7 @@ body .content__wrapper__main main .transfer .form .selects .selectform .select {
   overflow: hidden;
   border-radius: 0.25em;
 }
-body .content__wrapper__main main .transfer .form .selects .selectform .select::after {
+body .content__wrapper__main main .transfer .form form .selects .selectform .select::after {
   content: "▼";
   position: absolute;
   top: 0;
@@ -334,24 +385,38 @@ body .content__wrapper__main main .transfer .form .selects .selectform .select::
   pointer-events: none;
   transition: 0.25s all ease;
 }
-body .content__wrapper__main main .transfer .form .selects .selectform .select:hover::after {
+body .content__wrapper__main main .transfer .form form .selects .selectform .select:hover::after {
   color: #000000;
 }
-body .content__wrapper__main main .transfer .form .selects .selectform .player__list {
+body .content__wrapper__main main .transfer .form form .selects .selectform .player__list {
   margin-top: 20px;
 }
-body .content__wrapper__main main .transfer .form .selects .selectform .player__list .table {
+body .content__wrapper__main main .transfer .form form .selects .selectform .player__list .table {
   border-collapse: collapse;
 }
-body .content__wrapper__main main .transfer .form .selects .selectform .player__list .table th,
-body .content__wrapper__main main .transfer .form .selects .selectform .player__list td {
+body .content__wrapper__main main .transfer .form form .selects .selectform .player__list .table th,
+body .content__wrapper__main main .transfer .form form .selects .selectform .player__list td {
   border-bottom: 1px solid #ddd;
   text-align: left;
   align: left;
   padding-left: 15px;
   padding-bottom: 10px;
 }
+body .content__wrapper__main main .transfer .form form .selects .selectform .player__list .thead {
+  margin-bottom: 10px;
+}
+body .content__wrapper__main main .transfer .form form .selects .selectform .player__list tr th {
+  padding-bottom: 10px;
+}
+body .content__wrapper__main main .transfer .form form .selects .selectform .player__list td .action-button {
+  padding: 7px 15px;
+  color: #ffffff;
+  background-color: #cc0000;
+}
 body .content__wrapper__main main .navigation {
+  position: absolute;
+  bottom: 0;
+  left: 45%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -372,4 +437,168 @@ body .content__wrapper__main main .navigation .pagination span {
   margin-left: 2px;
   margin-right: 2px;
   border-radius: 50%;
+}
+body .content__wrapper__main footer {
+  padding-top: 10px;
+  font-size: 12px;
+  font-family: EMPrintRegular, Arial, sans-serif;
+  background-color: #262626;
+  color: #ffffff;
+  width: 100%;
+}
+@media (min-width: 769px) {
+  body .content__wrapper__main footer {
+    font-size: 14px;
+  }
+}
+body .content__wrapper__main footer .footer2 {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 769px) {
+  body .content__wrapper__main footer .footer2 {
+    padding: 60px;
+  }
+}
+body .content__wrapper__main footer .footer2__bottom {
+  display: flex;
+  flex-direction: column;
+}
+body .content__wrapper__main footer .footer2__bottom .copyrights ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  list-style-type: none;
+  width: 100%;
+  position: relative;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 5px;
+  right: 3px;
+  right: 2px;
+  bottom: 2px;
+  flex-direction: column;
+}
+@media (min-width: 769px) {
+  body .content__wrapper__main footer .footer2__bottom .copyrights ul {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}
+body .content__wrapper__main footer .footer2__bottom .copyrights ul li {
+  margin-bottom: 10px;
+}
+@media (min-width: 769px) {
+  body .content__wrapper__main footer .footer2__bottom .copyrights ul li::before {
+    display: inline-block;
+    content: "";
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    height: 0.15rem;
+    width: 0.15rem;
+    background-color: #ffffff;
+    position: relative;
+    bottom: 2px;
+  }
+}
+body .content__wrapper__main footer .footer2__bottom .copyrights ul li:nth-child(1)::before {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  height: 0;
+  width: 0;
+}
+body .content__wrapper__main footer .footer2__bottom .copyrights ul li:nth-child(1) a {
+  cursor: pointer !important;
+}
+@media (min-width: 769px) {
+  body .content__wrapper__main footer .footer2__bottom .copyrights ul li:nth-child(2) {
+    margin-left: 5px;
+  }
+}
+@media (min-width: 769px) {
+  body .content__wrapper__main footer .footer2__bottom .copyrights ul li:nth-child(2) {
+    position: relative;
+    left: 2px;
+  }
+}
+body .content__wrapper__main footer .footer2__bottom .copyrights ul li:nth-child(2)::before {
+  position: relative;
+  right: 2px;
+}
+@media (min-width: 769px) {
+  body .content__wrapper__main footer .footer2__bottom .copyrights ul li:nth-child(3) {
+    position: relative;
+    left: 10px;
+  }
+}
+body .content__wrapper__main footer .footer2__bottom .copyrights ul li:nth-child(3)::before {
+  position: relative;
+  right: 2px;
+}
+body .content__wrapper__main footer .footer2__bottom .copyrights ul li a {
+  text-decoration: none;
+  color: #ffffff;
+}
+body .content__wrapper__main footer .footer2__bottom .copyrights .copy {
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+body .content__wrapper__main footer .footer2__bottom .copyrights .copy .cop-links {
+  display: flex;
+}
+body .content__wrapper__main footer .footer2__bottom .copyrights .copy .cop-links .link1 {
+  display: none;
+  margin-right: 10px;
+}
+body .content__wrapper__main footer .footer2__bottom .copyrights .copy .cop-links .link1::after {
+  display: inline-block;
+  content: "";
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  height: 0.15rem;
+  width: 0.15rem;
+  background-color: #ffffff;
+  position: relative;
+  left: 5px;
+  bottom: 1.5px;
+}
+@media (max-width: 395px) {
+  body .content__wrapper__main footer .footer2__bottom .copyrights .copy .cop-links .link1 {
+    display: block;
+  }
+}
+body .content__wrapper__main footer .footer2__bottom .copyrights .copy .cop-links .link2 {
+  display: none;
+}
+@media (max-width: 462px) {
+  body .content__wrapper__main footer .footer2__bottom .copyrights .copy .cop-links .link2 {
+    display: block;
+  }
+}
+body .content__wrapper__main footer .footer2__bottom .copyrights .copy .cpyr {
+  margin-bottom: 5px;
+}
+@media (min-width: 769px) {
+  body .content__wrapper__main footer .footer2__bottom .copyrights .copy .cpyr {
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 767px) {
+  body .content__wrapper__main footer .footer2__bottom .copyrights .copy {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 767px) {
+  body .content__wrapper__main footer .footer2__bottom .copyrights .copy span {
+    margin-bottom: 5px;
+  }
+}
+@media (min-width: 769px) {
+  body .content__wrapper__main footer .footer2__bottom .copyrights .copy {
+    position: relative;
+    text-align: center;
+  }
 }/*# sourceMappingURL=styles.css.map */

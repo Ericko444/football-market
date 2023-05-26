@@ -20,9 +20,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class TeamController extends AbstractController
 {
-    public function __construct(private TeamService $teamService, private PlayerService $playerService, private EntityManagerInterface $em)
-    {
-
+    public function __construct(
+        private TeamService $teamService,
+        private PlayerService $playerService,
+        private EntityManagerInterface $em
+    ) {
     }
 
     #[Route('/', name: 'app_teams')]
@@ -65,12 +67,12 @@ class TeamController extends AbstractController
         $players = $this->teamService->getPlayers($id);
         $jsonData = array();
         $idx = 0;
-        foreach($players as $player) {
+        foreach ($players as $player) {
             $temp = array(
-               'id' => $player->getId(),
-               'name' => $player->getName(),
-               'surname' => $player->getSurname(),
-               'marketValue' => $player->getMarketValue(),
+                'id' => $player->getId(),
+                'name' => $player->getName(),
+                'surname' => $player->getSurname(),
+                'marketValue' => $player->getMarketValue(),
             );
             $jsonData[$idx++] = $temp;
         }
@@ -86,20 +88,18 @@ class TeamController extends AbstractController
         $amount = floatval($jsonData['price']);
         $teamTarget = $this->teamService->findTeam($jsonData['team']);
 
-        try{
+        try {
             $this->teamService->transferPlayer($player, $teamTarget, $amount);
             $this->em->flush();
             return new JsonResponse([
                 'success' => true,
                 'message' => 'Transfer successful.',
             ]);
-        }
-        catch(Exception $err){
+        } catch (Exception $err) {
             return new JsonResponse([
                 'success' => false,
                 'message' => $err->getMessage(),
             ]);
         }
-        
     }
 }

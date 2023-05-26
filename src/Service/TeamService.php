@@ -17,19 +17,18 @@ class TeamService
         private TeamRepository $teamRepository,
         private EntityManagerInterface $em
     ) {
-
     }
 
     public function getTeamsPagination()
     {
         $request = $this->requestStack->getMainRequest();
-        $dql   = "SELECT t FROM App\Entity\Team t";
+        $dql = "SELECT t FROM App\Entity\Team t";
         $query = $this->em->createQuery($dql);
 
         $pagination = $this->paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            10 
+            10
         );
 
         return $pagination;
@@ -43,13 +42,12 @@ class TeamService
     public function getPlayers($teamId)
     {
         $team = $this->teamRepository->find($teamId);
-        if(!is_null($team)){
+        if (!is_null($team)) {
             return $team->getPlayers();
-        }
-        else{
+        } else {
             throw new Exception("Team not found");
         }
-        return ;
+        return;
     }
 
     public function findTeam($id)
@@ -61,16 +59,14 @@ class TeamService
     {
         $playerTeam = $player->getTeam();
 
-        if($teamTarget->getMoneyBalance() - $amount > 0){
+        if ($teamTarget->getMoneyBalance() - $amount > 0) {
             $playerTeam->setMoneyBalance($playerTeam->getMoneyBalance() + $amount);
             $teamTarget->setMoneyBalance($teamTarget->getMoneyBalance() - $amount);
             $playerTeam->removePlayer($player);
             $teamTarget->addPlayer($player);
-        }
-        else{
+        } else {
             throw new Exception("Transfer is not executable");
         }
-
     }
 
 }

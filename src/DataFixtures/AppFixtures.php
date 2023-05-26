@@ -18,9 +18,9 @@ class AppFixtures extends Fixture
         // Create teams
         for ($i = 1; $i <= 20; $i++) {
             $team = new Team();
-            $team->setName($faker->word);
+            $team->setName($faker->lastName);
             $team->setCountry($faker->country);
-            $team->setMoneyBalance($faker->randomFloat(2, 1000, 10000));
+            $team->setMoneyBalance($faker->randomFloat(2, 100000, 10000000));
 
             $manager->persist($team);
 

@@ -5,75 +5,76 @@
 
 {% block body %}
 
-	<section class="create">
-		<div class="title">
-			<h1>Create Team</h1>
-		</div>
+    <section class="create">
+        <div class="title">
+            <h1>Create Team</h1>
+        </div>
 
-		<div class="form">
-			<div class="form__content">
-				{{ form_start(form) }}
-				<h2>Team</h2>
-				<div class="inputs">
-					{{ form_widget(form.name) }}
-					{{ form_widget(form.country) }}
-				</div>
-				<div class="inputs">
-					{{ form_widget(form.moneyBalance) }}
-					<input type="text" name="" class="input hidden">
-				</div>
+        <div class="form">
+            <div class="form__content">
+                {{ form_start(form) }}
+                <h2>Team</h2>
+                <div class="inputs">
+                    {{ form_widget(form.name) }}
+                    {{ form_widget(form.country) }}
+                </div>
+                <div class="inputs">
+                    {{ form_widget(form.moneyBalance) }}
+                    <input type="text" name="" class="input hidden">
+                </div>
 
-				<h2>Players</h2>
-				<div class="inputs">
-					<ul class="players" data-index="{{ form.players|length > 0 ? form.players|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(form.players.vars.prototype)|e('html_attr') }}"></ul>
-				</div>
-				<button type="button" class="add_item_link" data-collection-holder-class="players">Add a player</button>
+                <h2>Players</h2>
+                <div class="inputs">
+                    <ul class="players" data-index="{{ form.players|length > 0 ? form.players|last.vars.name + 1 : 0 }}"
+                        data-prototype="{{ form_widget(form.players.vars.prototype)|e('html_attr') }}"></ul>
+                </div>
+                <button type="button" class="add_item_link" data-collection-holder-class="players">Add a player</button>
 
-				<div>
-					<button type="submit" class="create__button">Create</button>
-				</div>
+                <div>
+                    <button type="submit" class="create__button">Create</button>
+                </div>
 
-				{{ form_end(form) }}
-			</div>
-		</div>
-	</section>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
 
-	<script>
-		const addFormToCollection = (e) => {
-			const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+    <script>
+        const addFormToCollection = (e) => {
+            const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
 
-			const item = document.createElement('li');
+            const item = document.createElement('li');
 
-			item.innerHTML = collectionHolder.dataset.prototype.replace(/__name__/g, collectionHolder.dataset.index);
+            item.innerHTML = collectionHolder.dataset.prototype.replace(/__name__/g, collectionHolder.dataset.index);
 
-			collectionHolder.appendChild(item);
+            collectionHolder.appendChild(item);
 
-			addTagFormDeleteLink(item);
+            addTagFormDeleteLink(item);
 
-			collectionHolder.dataset.index ++;
-		};
+            collectionHolder.dataset.index++;
+        };
 
-		const addTagFormDeleteLink = (item) => {
-			const removeFormButton = document.createElement('button');
-			removeFormButton.innerText = 'X';
+        const addTagFormDeleteLink = (item) => {
+            const removeFormButton = document.createElement('button');
+            removeFormButton.innerText = 'X';
 
-			item.append(removeFormButton);
+            item.append(removeFormButton);
 
-			removeFormButton.addEventListener('click', (e) => {
-				e.preventDefault();
-				item.remove();
-			});
-		}
+            removeFormButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                item.remove();
+            });
+        }
 
-		document.querySelectorAll('.add_item_link').forEach(btn => {
-			btn.addEventListener("click", addFormToCollection)
-		});
+        document.querySelectorAll('.add_item_link').forEach(btn => {
+            btn.addEventListener("click", addFormToCollection)
+        });
 
-		document
-		.querySelectorAll('ul.players li')
-		.forEach((tag) => {
-			addTagFormDeleteLink(tag)
-		})
-	</script>
+        document
+            .querySelectorAll('ul.players li')
+            .forEach((tag) => {
+                addTagFormDeleteLink(tag)
+            })
+    </script>
 
 {% endblock %}

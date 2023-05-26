@@ -1,38 +1,54 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>
-			{% block title %}Welcome!
-			{% endblock %}
-		</title>
-		<link
-		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-		{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-		{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}Welcome!
+        {% endblock %}
+    </title>
+    <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    {% endblock %}
 
-	</head>
-	<body>
-		<div class="content">
-			<div class="content__wrapper">
-				<div class="content__wrapper__main">
-					<header class="navbar">
-						<div class="navbar__container">
-							<a href="/" class="logo">
-								<div id="link_header_logo-m1">
-									<h2>Football Market</h2>
-								</div>
-							</a>
-						</div>
-					</header>
-					<main>
-						{% block body %}{% endblock %}
-					</main>
-
-				</div>
-			</div>
-		</div>
-	</body>
+</head>
+<body>
+<div class="content">
+    <div class="content__wrapper">
+        <div class="content__wrapper__main">
+            <header class="navbar">
+                <div class="navbar__container">
+                    <a href="/" class="logo">
+                        <div id="link_header_logo-m1">
+                            <h2>Football Market</h2>
+                        </div>
+                    </a>
+                </div>
+            </header>
+            <main>
+                {% block body %}{% endblock %}
+            </main>
+            <footer>
+                <div class="footer2">
+                    <div class="footer2__bottom">
+                        <div class="copyrights">
+                            <div class="copy">
+                                <p class="cpyr">
+                                    © Copyright 2023</span>
+                                    Football Market
+                                </p>
+                                <p>All Rights Reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
+</body>
 </html>

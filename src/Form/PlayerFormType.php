@@ -17,14 +17,14 @@ class PlayerFormType extends AbstractType
             ->add('name', TextType::class, [
                 'attr' => array(
                     'class' => 'input',
-                    'placeholder' => 'Enter player name...'
+                    'placeholder' => 'Enter player name...*'
                 ),
                 'label' => false
             ])
             ->add('surname', TextType::class, [
                 'attr' => array(
                     'class' => 'input',
-                    'placeholder' => 'Enter player surname...'
+                    'placeholder' => 'Enter player surname...*'
                 ),
                 'label' => false
             ])
@@ -34,8 +34,7 @@ class PlayerFormType extends AbstractType
                     'placeholder' => 'Enter player market value...'
                 ),
                 'label' => false
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

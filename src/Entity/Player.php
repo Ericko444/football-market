@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PlayerRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PlayerRepository::class)]
 class Player
@@ -15,6 +16,7 @@ class Player
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
     #[ORM\Column(length: 100, nullable: true)]

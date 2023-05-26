@@ -18,21 +18,21 @@ class TeamFormType extends AbstractType
             ->add('name', TextType::class, [
                 'attr' => array(
                     'class' => 'input name',
-                    'placeholder' => 'Enter team name...'
+                    'placeholder' => 'Enter team name...*'
                 ),
                 'label' => false
             ])
             ->add('country', TextType::class, [
                 'attr' => array(
                     'class' => 'input',
-                    'placeholder' => 'Enter team country...'
+                    'placeholder' => 'Enter team country...*'
                 ),
                 'label' => false
             ])
             ->add('moneyBalance', NumberType::class, [
                 'attr' => array(
                     'class' => 'input name',
-                    'placeholder' => 'Enter money balance...'
+                    'placeholder' => 'Enter money balance...*'
                 ),
                 'label' => false
             ])
@@ -42,8 +42,7 @@ class TeamFormType extends AbstractType
                 'allow_add' => true,
                 'by_reference' => false,
                 'allow_delete' => true,
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
