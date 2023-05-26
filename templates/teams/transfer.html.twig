@@ -145,7 +145,7 @@
                     console.log('Row Data:', rowData);
                     if (!!team1 && !!team2) {
                         if (team1 != team2) {
-                            const text = table === 'table1' ? `Transfer ${rowData[1]} from ${team1} to ${team2} for the amount of :` : `Transfer ${rowData[1]} from ${team2} to ${team1} for the amount of :`;
+                            const text = table === 'table1' ? `Transfer ${rowData[1]} from ${getSelectedText('team1')} to ${getSelectedText('team2')} for the amount of :` : `Transfer ${rowData[1]} from ${getSelectedText('team2')} to ${getSelectedText('team1')} for the amount of :`;
                             $('#text').html(text);
                             $('#amount').css('display', 'block');
                             $('#submit').css('display', 'block');
@@ -186,6 +186,15 @@
             event.preventDefault();
             validateTransfer($('#player').val(), $('#teamDestination').val());
         });
+
+		function getSelectedText(elementId) {
+			var elt = document.getElementById(elementId);
+
+			if (elt.selectedIndex == -1)
+				return null;
+
+			return elt.options[elt.selectedIndex].text;
+		}
     </script>
 
 
