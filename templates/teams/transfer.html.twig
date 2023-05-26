@@ -1,0 +1,178 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Transfer players
+{% endblock %}
+
+{% block body %}
+
+	<section class="transfer">
+		<div class="title">
+			<h1>Transfer players</h1>
+		</div>
+		<div class="form">
+			<form action="">
+				<div class="selects">
+					<div class="selectform">
+						<div class="select">
+							<select name="team1" id="team1">
+								<option selected disabled>Choose the team 1</option>
+								{% for team in teams %}
+									<option value={{team.id}}>{{team.name}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="player__list">
+							<table class = "table1">  
+								<tbody id = "player1"></tbody>  
+							</table> 
+						</div>
+					</div>
+					<div class="selectform">
+						<div class="select">
+							<select name="team2" id="team2">
+								<option selected disabled>Choose the team 2</option>
+								{% for team in teams %}
+									<option value={{team.id}}>{{team.name}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="player__list" id="team2__list">
+							<table class = "table2">  
+								<tbody id = "player2"></tbody>  
+							</table> 
+						</div>
+					</div>
+				</div>
+				<p id="text" class="text"></p>
+				<input type="hidden" name="player" id="player"/>
+				<input type="hidden" name="teamDestination" id="teamDestination"/>
+				<div class="amount">
+					<input type="number" name="amount" id="amount" style="display:none" step="0.01" />
+				</div>
+				<div class="submit">
+					<button class="submit__button" id="submit" style="display:none">Validate</button>
+				</div>
+			</form>
+		</div>
+	</section>
+
+	<script>
+		const loadPlayersList = (idContainer,idTeam) => {
+			$.ajax({  
+               url:        `/team/players/${idTeam}`,  
+               type:       'GET',   
+               dataType:   'json',  
+               async:      true,  
+               
+               success: function(data, status) {  
+                  var e = $('<tr><th>Name</th><th>Market Value</th><th>Transfer</th></tr>');  
+				  $(`#${idContainer}`).html('');  
+				  $(`#${idContainer}`).append(e); 
+                  for(i = 0; i < data.length; i++) {  
+                     player = data[i];  
+					 id = `transfer-${player['id']}`;
+                     var e = $('<tr><td id = "id" style="display:none"><td id = "name"></td><td id = "marketValue"></td><td id = "transfer"><button class="action-button" data-action="transfer">Transfer</button></td></tr>');
+                     $('#name', e).html(player['name']);  
+                     $('#id', e).html(player['id']);  
+                     $('#marketValue', e).html(player['marketValue']);  
+                     $(`#${idContainer}`).append(e);  
+                  }  
+               },  
+               error : function(xhr, textStatus, errorThrown) {  
+                  alert('Ajax request failed.');  
+               }  
+            }); 
+		}
+
+		$('#team1').on('change', function()
+		{
+			console.log(this.value);
+			loadPlayersList('player1', this.value);
+		});
+
+		$('#team2').on('change', function()
+		{
+			loadPlayersList('player2', this.value);
+		});
+
+		const validateTransfer = (playerId, teamDestination) => {
+			if(!!playerId && !!teamDestination){
+				const data = {
+					player: playerId,
+					team: teamDestination,
+					price: $('#amount').val()
+				}
+				console.log('DATA', data);
+				$.ajax({  
+					url:        `/team/transfer/validate`,  
+					type:       'POST',   
+					dataType:   'json',  
+					async:      true,  
+					data: JSON.stringify(data),
+					contentType: 'application/json',
+					
+					success: function(data, status) {  
+						console.log(data); 
+						loadPlayersList('player1', $('#team1').val());
+						loadPlayersList('player2', $('#team2').val());
+					},  
+					error : function(xhr, textStatus, errorThrown) {  
+						console.log('Message', errorThrown.message);  
+					}  
+				});
+			} 
+		}
+
+		function handleTransfer(event, table){
+			event.preventDefault();
+			const target = event.target;
+			if (target.classList.contains('action-button')) {
+				const action = target.getAttribute('data-action');
+				const row = target.closest('tr');
+				const rowData = Array.from(row.querySelectorAll('td')).map(cell => cell.textContent);
+				const team1 = $('#team1').val();
+				const team2 = $('#team2').val();
+				if (action === 'transfer') {
+					console.log('Transfer clicked');
+					console.log('Row Data:', rowData);
+					if(!!team1 && !!team2){
+						if(team1 != team2){
+							const text = table === 'table1' ? `Transfer ${rowData[1]} from ${team1} to ${team2} for the amount of :` : `Transfer ${rowData[1]} from ${team2} to ${team1} for the amount of :`;
+							$('#text').html(text);
+							$('#amount').css('display', 'block');
+							$('#submit').css('display', 'block');
+							$('#amount').val(rowData[2]);
+							$('#player').val(rowData[0]);
+							const teamDestination = table === 'table1' ? team2 : team1;
+							$('#teamDestination').val(teamDestination);
+						}
+						else{
+							$('#text').html(``);
+							$('#amount').css('display', 'none');
+							$('#submit').css('display', 'none');
+							$('#amount').val(0);
+						}
+					}
+				} 
+			}
+		}
+
+		const table = document.querySelector('.table1');
+		table.addEventListener('click', function (event) {
+			handleTransfer(event, 'table1');
+		});
+
+		const table2 = document.querySelector('.table2');
+		table2.addEventListener('click', function (event) {
+			handleTransfer(event, 'table2');
+		});
+
+		const submit = document.querySelector('#submit');
+		submit.addEventListener('click', function (event) {
+			event.preventDefault();
+			validateTransfer($('#player').val(),$('#teamDestination').val());
+		});
+	</script>
+
+
+{% endblock %}

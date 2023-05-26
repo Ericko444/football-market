@@ -29,6 +29,7 @@ class AppFixtures extends Fixture
                 $player = new Player();
                 $player->setName($faker->firstName);
                 $player->setSurname($faker->lastName);
+                $player->setMarketValue($faker->randomFloat(2, 50000, 1000000));
                 $player->setTeam($team);
 
                 $manager->persist($player);

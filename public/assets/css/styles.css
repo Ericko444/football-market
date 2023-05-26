@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Quicksand:400,700");
 * {
   margin: 0px;
@@ -206,9 +207,15 @@ body .content__wrapper__main main .create .form__content .inputs .players li but
 }
 body .content__wrapper__main main .create .form__content .inputs .players li div {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 body .content__wrapper__main main .create .form__content .inputs .players li div div:nth-child(1) {
   margin-right: 70px;
+}
+body .content__wrapper__main main .create .form__content .inputs .players li div div:nth-child(3) {
+  display: block;
+  width: 100%;
 }
 body .content__wrapper__main main .create .form__content .add_item_link {
   background-color: #ffffff;
@@ -244,6 +251,105 @@ body .content__wrapper__main main .create .form__content .create__button {
     width: 135px;
     margin-top: 30px;
   }
+}
+body .content__wrapper__main main .transfer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body .content__wrapper__main main .transfer .title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+body .content__wrapper__main main .transfer .title h1 {
+  font-size: 2em;
+}
+body .content__wrapper__main main .transfer .form .text {
+  text-align: center;
+  margin: 20px 0;
+}
+body .content__wrapper__main main .transfer .form .amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+}
+body .content__wrapper__main main .transfer .form .amount input {
+  text-align: center;
+}
+body .content__wrapper__main main .transfer .form .submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+}
+body .content__wrapper__main main .transfer .form .selects {
+  display: flex;
+  justify-content: space-between;
+}
+body .content__wrapper__main main .transfer .form .selects .selectform {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+body .content__wrapper__main main .transfer .form .selects .selectform select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #ffffff;
+  background-image: none;
+  flex: 1;
+  padding: 0 0.5em;
+  color: #000000;
+  cursor: pointer;
+  font-size: 1em;
+}
+body .content__wrapper__main main .transfer .form .selects .selectform select::-ms-expand {
+  display: none;
+}
+body .content__wrapper__main main .transfer .form .selects .selectform .select {
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  line-height: 3;
+  background: #ffffff;
+  overflow: hidden;
+  border-radius: 0.25em;
+}
+body .content__wrapper__main main .transfer .form .selects .selectform .select::after {
+  content: "▼";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #ffffff;
+  cursor: pointer;
+  pointer-events: none;
+  transition: 0.25s all ease;
+}
+body .content__wrapper__main main .transfer .form .selects .selectform .select:hover::after {
+  color: #000000;
+}
+body .content__wrapper__main main .transfer .form .selects .selectform .player__list {
+  margin-top: 20px;
+}
+body .content__wrapper__main main .transfer .form .selects .selectform .player__list .table {
+  border-collapse: collapse;
+}
+body .content__wrapper__main main .transfer .form .selects .selectform .player__list .table th,
+body .content__wrapper__main main .transfer .form .selects .selectform .player__list td {
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  align: left;
+  padding-left: 15px;
+  padding-bottom: 10px;
 }
 body .content__wrapper__main main .navigation {
   display: flex;

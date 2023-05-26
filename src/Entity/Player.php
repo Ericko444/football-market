@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PlayerRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PlayerRepository::class)]
@@ -21,6 +22,9 @@ class Player
 
     #[ORM\ManyToOne(inversedBy: 'players')]
     private ?Team $team = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
+    private ?string $marketValue = null;
 
     public function getId(): ?int
     {
@@ -59,6 +63,18 @@ class Player
     public function setTeam(?Team $team): self
     {
         $this->team = $team;
+
+        return $this;
+    }
+
+    public function getMarketValue(): ?string
+    {
+        return $this->marketValue;
+    }
+
+    public function setMarketValue(?string $marketValue): self
+    {
+        $this->marketValue = $marketValue;
 
         return $this;
     }
