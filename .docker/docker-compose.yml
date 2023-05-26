@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+    db:
+        image: mysql:8.0.33
+        platform: linux/x86_64
+        command: --default-authentication-plugin=mysql_native_password
+        volumes:
+            - "db_app:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: mysql
+            MYSQL_DATABASE: footballmarket
+            MYSQL_USER: mydb
+            MYSQL_PASSWORD: mysql
+        ports:
+            - 3306:3306
+        networks:
+            - footballmarket
+    php:
+        build:
+            context: ./php
+            args:
+                TIMEZONE: ${TIMEZONE}
+        volumes:
+            - ../:/var/www/symfony:cached
+            - footballmarket_var:/var/www/symfony/var
+            - footballmarket_vendor:/var/www/symfony/vendor
+        networks:
+            - footballmarket
+    nginx:
+        build:
+            context: ./nginx
+        volumes:
+            - ../:/var/www/symfony:cached
+            - footballmarket_var:/var/www/symfony/var
+            - footballmarket_vendor:/var/www/symfony/vendor
+        ports:
+            - 8080:80
+        networks:
+            - footballmarket
+        env_file:
+            - .env.nginx.local
+
+volumes:
+  footballmarket_var:
+  footballmarket_vendor:
+  db_app:
+
+networks:
+    footballmarket:
